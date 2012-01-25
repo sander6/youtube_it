@@ -390,9 +390,9 @@ class YouTubeIt
       if response_code/10 == 20 # success
         REXML::Document.new(profile.body).elements["entry"].elements['author'].elements['name'].text
       elsif response_code == 403 || response_code == 401 # auth failure
-        raise YouTubeIt::Upload::AuthenticationError.new(profile.inspect, response_code)
+        raise YouTubeIt::AuthenticationError.new(profile.inspect, response_code)
       else
-        raise YouTubeIt::Upload::UploadError.new(profile.inspect, response_code)
+        raise YouTubeIt::UploadError.new(profile.inspect, response_code)
       end
     end
 
